@@ -1,230 +1,102 @@
-# Create a GitHub Action Using TypeScript
+This GitHub Action (written in Typescript) wraps the
+[Octokit Create a Release](https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release)
+endpoint, to allow you to leverage GitHub Actions to create releases.
 
-[![GitHub Super-Linter](https://github.com/actions/typescript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/typescript-action/actions/workflows/ci.yml/badge.svg)
-[![Check dist/](https://github.com/actions/typescript-action/actions/workflows/check-dist.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/check-dist.yml)
-[![CodeQL](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml)
-[![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
+This action is an up-to-date version of the archived first-party
+[Create Release](https://github.com/actions/create-release) action by Github. All functionality is the same, but the
+action uses the [Octokit](https://github.com/octokit/octokit.js) api instead of the old Github api.
 
-Use this template to bootstrap the creation of a TypeScript action. :rocket:
-
-This template includes compilation support, tests, a validation workflow,
-publishing, and versioning guidance.
-
-If you are new, there's also a simpler introduction in the
-[Hello world JavaScript action repository](https://github.com/actions/hello-world-javascript-action).
-
-## Create Your Own Action
-
-To create your own action, you can use this repository as a template! Just
-follow the below instructions:
-
-1. Click the **Use this template** button at the top of the repository
-1. Select **Create a new repository**
-1. Select an owner and name for your new repository
-1. Click **Create repository**
-1. Clone your new repository
-
-> [!IMPORTANT]
->
-> Make sure to remove or update the [`CODEOWNERS`](./CODEOWNERS) file! For
-> details on how to use this file, see
-> [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
-
-## Initial Setup
-
-After you've cloned the repository to your local machine or codespace, you'll
-need to perform some initial setup steps before you can develop your action.
-
-> [!NOTE]
->
-> You'll need to have a reasonably modern version of
-> [Node.js](https://nodejs.org) handy (20.x or later should work!). If you are
-> using a version manager like [`nodenv`](https://github.com/nodenv/nodenv) or
-> [`nvm`](https://github.com/nvm-sh/nvm), this template has a `.node-version`
-> file at the root of the repository that will be used to automatically switch
-> to the correct version when you `cd` into the repository. Additionally, this
-> `.node-version` file is used by GitHub Actions in any `actions/setup-node`
-> actions.
-
-1. :hammer_and_wrench: Install the dependencies
-
-   ```bash
-   npm install
-   ```
-
-1. :building_construction: Package the TypeScript for distribution
-
-   ```bash
-   npm run bundle
-   ```
-
-1. :white_check_mark: Run the tests
-
-   ```bash
-   $ npm test
-
-   PASS  ./index.test.js
-     ✓ throws invalid number (3ms)
-     ✓ wait 500 ms (504ms)
-     ✓ test runs (95ms)
-
-   ...
-   ```
-
-## Update the Action Metadata
-
-The [`action.yml`](action.yml) file defines metadata about your action, such as
-input(s) and output(s). For details about this file, see
-[Metadata syntax for GitHub Actions](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions).
-
-When you copy this repository, update `action.yml` with the name, description,
-inputs, and outputs for your action.
-
-## Update the Action Code
-
-The [`src/`](./src/) directory is the heart of your action! This contains the
-source code that will be run when your action is invoked. You can replace the
-contents of this directory with your own code.
-
-There are a few things to keep in mind when writing your action code:
-
-- Most GitHub Actions toolkit and CI/CD operations are processed asynchronously.
-  In `main.ts`, you will see that the action is run in an `async` function.
-
-  ```javascript
-  import * as core from '@actions/core'
-  //...
-
-  async function run() {
-    try {
-      //...
-    } catch (error) {
-      core.setFailed(error.message)
-    }
-  }
-  ```
-
-  For more information about the GitHub Actions toolkit, see the
-  [documentation](https://github.com/actions/toolkit/blob/master/README.md).
-
-So, what are you waiting for? Go ahead and start customizing your action!
-
-1. Create a new branch
-
-   ```bash
-   git checkout -b releases/v1
-   ```
-
-1. Replace the contents of `src/` with your action code
-1. Add tests to `__tests__/` for your source code
-1. Format, test, and build the action
-
-   ```bash
-   npm run all
-   ```
-
-   > [!WARNING]
-   >
-   > This step is important! It will run [`ncc`](https://github.com/vercel/ncc)
-   > to build the final JavaScript action code with all dependencies included.
-   > If you do not run this step, your action will not work correctly when it is
-   > used in a workflow. This step also includes the `--license` option for
-   > `ncc`, which will create a license file for all of the production node
-   > modules used in your project.
-
-1. Commit your changes
-
-   ```bash
-   git add .
-   git commit -m "My first action is ready!"
-   ```
-
-1. Push them to your repository
-
-   ```bash
-   git push -u origin releases/v1
-   ```
-
-1. Create a pull request and get feedback on your action
-1. Merge the pull request into the `main` branch
-
-Your action is now published! :rocket:
-
-For information about versioning your action, see
-[Versioning](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-in the GitHub Actions toolkit.
-
-## Validate the Action
-
-You can now validate the action by referencing it in a workflow file. For
-example, [`ci.yml`](./.github/workflows/ci.yml) demonstrates how to reference an
-action in the same repository.
-
-```yaml
-steps:
-  - name: Checkout
-    id: checkout
-    uses: actions/checkout@v4
-
-  - name: Test Local Action
-    id: test-action
-    uses: ./
-    with:
-      milliseconds: 1000
-
-  - name: Print Output
-    id: output
-    run: echo "${{ steps.test-action.outputs.time }}"
-```
-
-For example workflow runs, check out the
-[Actions tab](https://github.com/actions/typescript-action/actions)! :rocket:
+<a href="https://github.com/actions/create-release"><img alt="GitHub Actions status" src="https://github.com/actions/create-release/workflows/Tests/badge.svg"></a>
 
 ## Usage
 
-After testing, you can create version tag(s) that developers can use to
-reference different stable versions of your action. For more information, see
-[Versioning](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-in the GitHub Actions toolkit.
+### Pre-requisites
 
-To include the action in a workflow in another repository, you can use the
-`uses` syntax with the `@` symbol to reference a specific branch, tag, or commit
-hash.
+Create a workflow `.yml` file in your `.github/workflows` directory. An
+[example workflow](#example-workflow---create-a-release) is available below. For more information, reference the GitHub
+Help Documentation for
+[Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
+
+### Inputs
+
+For more information on these inputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#input)
+
+- `tag_name`: The name of the tag for this release
+- `release_name`: The name of the release
+- `body`: Text describing the contents of the release. Optional, and not needed if using `body_path`.
+- `body_path`: A file with contents describing the release. Optional, and not needed if using `body`.
+- `draft`: `true` to create a draft (unpublished) release, `false` to create a published one. Default: `false`
+- `prerelease`: `true` to identify the release as a prerelease. `false` to identify the release as a full release.
+  Default: `false`
+- `commitish` : Any branch or commit SHA the Git tag is created from, unused if the Git tag already exists. Default: SHA
+  of current commit
+- `owner`: The name of the owner of the repo. Used to identify the owner of the repository. Used when cutting releases
+  for external repositories. Default: Current owner
+- `repo`: The name of the repository. Used to identify the repository on which to release. Used when cutting releases
+  for external repositories. Default: Current repository
+
+#### `body_path`
+
+The `body_path` is valuable for dynamically creating a `.md` within code commits and even within the Github Action steps
+leading up to the `create-release`.
+
+### Outputs
+
+For more information on these outputs, see the
+[API Documentation](https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#response-4) for an example
+of what these outputs look like
+
+- `id`: The release ID
+- `html_url`: The URL users can navigate to in order to view the release. i.e.
+  `https://github.com/octocat/Hello-World/releases/v1.0.0`
+- `upload_url`: The URL for uploading assets to the release, which could be used by GitHub Actions for additional uses,
+  for example the [`@actions/upload-release-asset`](https://www.github.com/actions/upload-release-asset) GitHub Action
+
+### Example workflow - create a release
+
+On every `push` to a tag matching the pattern `v*`,
+[create a release](https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release):
 
 ```yaml
-steps:
-  - name: Checkout
-    id: checkout
-    uses: actions/checkout@v4
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
-  - name: Test Local Action
-    id: test-action
-    uses: actions/typescript-action@v1 # Commit with the `v1` tag
-    with:
-      milliseconds: 1000
+name: Create Release
 
-  - name: Print Output
-    id: output
-    run: echo "${{ steps.test-action.outputs.time }}"
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
 ```
 
-## Publishing a new release
+This will create a [Release](https://help.github.com/en/articles/creating-releases), as well as a
+[`release` event](https://developer.github.com/v3/activity/events/types/#releaseevent), which could be handled by a
+third party service, or by GitHub Actions for additional uses, for example the
+[`@actions/upload-release-asset`](https://www.github.com/actions/upload-release-asset) GitHub Action. This uses the
+`GITHUB_TOKEN` provided by the
+[virtual environment](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#github_token-secret),
+so no new token is needed.
 
-This project includes a helper script designed to streamline the process of
-tagging and pushing new releases for GitHub Actions.
+## License
 
-GitHub Actions allows users to select a specific version of the action to use,
-based on release tags. Our script simplifies this process by performing the
-following steps:
-
-1. **Retrieving the latest release tag:** The script starts by fetching the most
-   recent release tag by looking at the local data available in your repository.
-1. **Prompting for a new release tag:** The user is then prompted to enter a new
-   release tag. To assist with this, the script displays the latest release tag
-   and provides a regular expression to validate the format of the new tag.
-1. **Tagging the new release:** Once a valid new tag is entered, the script tags
-   the new release.
-1. **Pushing the new tag to the remote:** Finally, the script pushes the new tag
-   to the remote repository. From here, you will need to create a new release in
-   GitHub and users can easily reference the new tag in their workflows.
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
