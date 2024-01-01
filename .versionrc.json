@@ -34,5 +34,6 @@
 		}
 	],
 	"commitUrlFormat": "https://github.com/ShtibsDev/create-release/commits/{{hash}}",
-	"compareUrlFormat": "https://github.com/ShtibsDev/create-release/compare/{{previousTag}}...{{currentTag}}"
+	"compareUrlFormat": "https://github.com/ShtibsDev/create-release/compare/{{previousTag}}...{{currentTag}}",
+	"releaseCommitMessageFormat": "chore(release): 🔖 v{{currentTag}}"
 }

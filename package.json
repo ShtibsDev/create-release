@@ -1,19 +1,23 @@
 {
   "name": "typescript-action",
-  "description": "GitHub Actions TypeScript template",
-  "version": "0.0.0",
-  "author": "",
-  "private": true,
-  "homepage": "https://github.com/actions/typescript-action",
+  "description": "An up-to-date version of the Github Create-Release action",
+  "version": "1.0.0",
+  "author": "ShtibsDev",
+  "homepage": "https://github.com/ShtibsDev/create-release",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/ShtibsDev/create-release.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/typescript-action/issues"
+    "url": "https://github.com/ShtibsDev/create-release/issues"
   },
   "keywords": [
+    "release",
+    "release-automation",
+    "automation",
     "actions",
+    "github-actions",
+    "github",
     "node",
     "setup"
   ],
