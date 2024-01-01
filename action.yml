@@ -1,4 +1,4 @@
-name: "Create a release"
+name: "Create a github release"
 description: "Create a release for a tag in your repository. An updated version of the original first-party"
 author: "ShtibsDev"
 

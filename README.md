@@ -6,7 +6,7 @@ This action is an up-to-date version of the archived first-party
 [Create Release](https://github.com/actions/create-release) action by Github. All functionality is the same, but the
 action uses the [Octokit](https://github.com/octokit/octokit.js) api instead of the old Github api.
 
-<a href="https://github.com/actions/create-release"><img alt="GitHub Actions status" src="https://github.com/actions/create-release/workflows/Tests/badge.svg"></a>
+<a href="https://github.com/ShtibsDev/create-release"><img alt="GitHub Actions status" src="https://github.com/actions/create-release/workflows/Tests/badge.svg"></a>
 
 ## Usage
 
